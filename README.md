@@ -9,3 +9,5 @@ this consists of all my code done in the pps lab in sem 1
 <img width="877" height="310" alt="image" src="https://github.com/user-attachments/assets/743f708b-b9cd-4570-bbc7-7ede6f34ec8a" />
 <img width="1003" height="475" alt="image" src="https://github.com/user-attachments/assets/ee5d54e2-ee51-4692-ac87-ad0312ba9cd8" />
 <img width="1010" height="547" alt="image" src="https://github.com/user-attachments/assets/8ede81b3-935f-4323-aa5f-5131a1de8f17" />
+<img width="440" height="306" alt="image" src="https://github.com/user-attachments/assets/88c0a1da-1e1c-45d2-87e2-fa2ee7443edd" />
+<img width="447" height="353" alt="image" src="https://github.com/user-attachments/assets/94d40078-8a02-4f9f-898e-48acdea517b3" />
