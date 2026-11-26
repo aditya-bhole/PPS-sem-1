@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+struct robo { int roboid; char robotype[50]; float payload; int actual; float time; };
+
+int main() { int n, i;
+
+printf("Enter number of robots: ");
+scanf("%d", &n);
+
+struct robo robo[n];
+
+for (i = 0; i < n; i++)
+{
+    printf("Enter robo Id:\n");
+    scanf("%d", &robo[i].roboid);
+
+    printf("Enter actual load:\n");
+    scanf("%d", &robo[i].actual);
+
+    printf("Enter the robot type:\n");
+    scanf("%49s", robo[i].robotype);
+
+    printf("Enter payload capacity and time:\n");
+    scanf("%f %f", &robo[i].payload, &robo[i].time);
+}
+
+for (i = 0; i < n; i++)
+{
+    printf("\nRobot ID: %d\n", robo[i].roboid);
+    printf("Robot Type: %s\n", robo[i].robotype);
+    printf("Actual Load: %d\n", robo[i].actual);
+    printf("Payload Capacity: %.2f\n", robo[i].payload);
+    printf("Time: %.2f\n", robo[i].time);
+
+    if (robo[i].payload <= 0)
+    {
+        printf("Invalid payload capacity.\n");
+        continue;
+    }
+
+    float util = ((float)robo[i].actual / robo[i].payload) * 100;
+
+    printf("Utilization = %.2f %%\n", util);
+
+    if (robo[i].actual > robo[i].payload)
+    {
+        printf("Overloaded\n");
+    }
+    else
+    {
+        printf("Within Limit\n");
+    }
+}
+
+return 0;
+
+}
