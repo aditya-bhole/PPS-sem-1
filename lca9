@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+#define TEMP_LIMIT   70.0   /* deg C */
+#define TORQUE_LIMIT 50.0   /* Nm */
+
+int main(void)
+{
+    int n, i, id;
+    float j1, j2, j3, temp, torque;
+    char status[16];
+    FILE *fp = fopen("robot_log.txt", "w");
+
+    if (fp == NULL) { perror("fopen"); return 1; }
+
+    /* ---- Write records ---- */
+    printf("How many records? ");
+    scanf("%d", &n);
+    for (i = 1; i <= n; i++) {
+        printf("Record %d - J1 J2 J3 Temp Torque Status: ", i);
+        scanf("%f %f %f %f %f %15s", &j1, &j2, &j3, &temp, &torque, status);
+        fprintf(fp, "%d %f %f %f %f %f %s\n", i, j1, j2, j3, temp, torque, status);
+    }
+    fclose(fp);
+
+    /* ---- Read and analyse records ---- */
+    fp = fopen("robot_log.txt", "r");
+    printf("\nID  Temp  Torque  Result\n");
+    while (fscanf(fp, "%d %f %f %f %f %f %15s",
+                  &id, &j1, &j2, &j3, &temp, &torque, status) == 7) {
+        int hot = temp > TEMP_LIMIT, heavy = torque > TORQUE_LIMIT;
+        printf("%-3d %-5.1f %-7.1f", id, temp, torque);
+        if (hot)   printf(" HIGH-TEMP");
+        if (heavy) printf(" HIGH-TORQUE");
+        if ((hot && heavy) || strcmp(status, "FAULT") == 0)
+            printf(" POTENTIAL-FAILURE");
+        if (!hot && !heavy && strcmp(status, "FAULT") != 0)
+            printf(" OK");
+        printf("\n");
+    }
+    fclose(fp);
+    return 0;
+}
